@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        background-color: pink;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      h1 {
+        color: rgb(158, 61, 94);
+      }
+      #main {
+        height: 70%;
+        width: 60%;
+        background-color: palevioletred;
+        border-radius: 10px;
+        border: 2px solid whitesmoke;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .task {
+        margin-top: 40px;
+      }
+      .task input {
+        padding: 10px 35px;
+        border-radius: 10px;
+        border: none;
+        border: 2px solid pink;
+      }
+      .task button {
+        padding: 10px;
+        background-color: rgb(158, 61, 94);
+        border: none;
+        border: 1px solid white;
+        border-radius: 10px;
+        color: white;
+      }
+      #todo {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px;
+        padding: 10px 15px;
+        width: 70%;
+        flex-wrap: wrap;
+      }
+      .li {
+        display: flex;
+        background-color: white;
+        border-radius: 10px;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px solid pink;
+        width: 100%;
+        padding: 10px;
+      }
+      .li button {
+        padding: 8px 26px;
+        background-color: rgb(163, 46, 87);
+        border: none;
+        color: white;
+        border-radius: 10px;
+        border: 2px solid pink;
+      }
+      .li button:nth-child(1) {
+        background-color: rgb(100, 35, 57);
+      }
+      .li button:hover {
+        background-color: palevioletred;
+      }
+      .check {
+        width: 18px;
+        height: 18px;
+      }
+      #check {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>To-Do List</h1>
+    <div id="main">
+      <div class="task">
+        <input id="task" type="text" placeholder="Enter a Task" />
+        <button id="add">Add</button>
+      </div>
+      <div id="todo"></div>
+    </div>
+
+    <script>
+      let inp = document.querySelector("input");
+      let add = document.querySelector("#add");
+      let todo = document.querySelector("#todo");
+      let checkbox = document.querySelector(".check");
+      let text = document.querySelector("#task");
+
+      add.addEventListener("click", function (elem, index) {
+        const value = inp.value;
+        if (value.trim() === "") return;
+        todo.innerHTML += `<div class="li">
+         <div id="check">
+         <input type="checkbox" class="check">
+           <h3>${value}</h3>
+           </div>
+           <div>
+        <button>Edit</button>
+        <button>Delete</button>
+         </div>
+          </div>`;
+
+        inp.value = "";
+      });
+      checkbox.addEventListener("change", function () {
+        text.style.textDecoration = checkbox.checked ? "line-through" : "none";
+      });
+    </script>
+  </body>
+</html>
